@@ -1,0 +1,105 @@
+package collections_assignment;
+
+public class Linked_List1 
+{
+	 public int data;
+	    public Linked_List1 next;
+
+	    public Linked_List1(int data) {
+	        this.data = data;
+	        this.next = null;
+	    }
+
+}
+class LinkedList {
+    private Linked_List1 head;
+
+    public LinkedList() {
+        this.head = null;
+    }
+
+    public Linked_List1 getHead() {
+        return head;
+    }
+
+    public void setHead(Linked_List1 head) {
+        this.head = head;
+    }
+
+    public void insert(int data) {
+        Linked_List1 newNode = new Linked_List1(data);
+        if (head == null) {
+            head = newNode;
+        } else {
+            Linked_List1 currentNode = head;
+            while (currentNode.next != null) {
+                currentNode = currentNode.next;
+            }
+            currentNode.next = newNode;
+        }
+    }
+
+    public void removeDuplicates() {
+        if (head == null) {
+            return;
+        }
+        Linked_List1 currentNode = head;
+        while (currentNode != null) {
+            Linked_List1 runnerNode = currentNode;
+            while (runnerNode.next != null) {
+                if (runnerNode.next.data == currentNode.data) {
+                    runnerNode.next = runnerNode.next.next;
+                } else {
+                    runnerNode = runnerNode.next;
+                }
+            }
+            currentNode = currentNode.next;
+        }
+    }
+
+    public void printList() {
+        Linked_List1 currentNode = head;
+        while (currentNode != null) {
+            System.out.print(currentNode.data + "->");
+            currentNode = currentNode.next;
+        }
+        System.out.println("");
+    }
+}
+
+package collections_assignment;
+
+public class Tester_L1 {
+
+	public static void main(String[] args)
+	{
+		LinkedList list1 = new LinkedList();
+        list1.insert(10);
+        list1.insert(15);
+        list1.insert(21);
+        list1.insert(15);
+        list1.insert(10);
+        System.out.println("Before removing duplicates:");
+        list1.printList();
+        list1.removeDuplicates();
+        System.out.println("After removing duplicates:");
+        list1.printList();
+
+        LinkedList list2 = new LinkedList();
+        list2.insert(51);
+        list2.insert(45);
+        list2.insert(45);
+        list2.insert(15);
+        list2.insert(82);
+        list2.insert(51);
+        list2.insert(10);
+        System.out.println("Before removing duplicates:");
+        list2.printList();
+        list2.removeDuplicates();
+        System.out.println("After removing duplicates:");
+        list2.printList();
+		
+
+	}
+
+}

@@ -1,0 +1,57 @@
+package hashmap1;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+
+public class SalesCompany 
+{
+	 public static List<String> sortSales(Map<String, Integer> sales) {
+	        List<Map.Entry<String, Integer>> list = new ArrayList<>(sales.entrySet());
+	        Collections.sort(list, new Comparator<Map.Entry<String, Integer>>() {
+	            public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
+	                return o2.getValue().compareTo(o1.getValue());
+	            }
+	        });
+	        List<String> result = new ArrayList<>();
+	        for (Map.Entry<String, Integer> entry : list) {
+	            result.add(entry.getKey());
+	        }
+	        return result;
+	    }
+
+}
+
+package hashmap1;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class Tester {
+
+	public static void main(String[] args)
+	{
+		 Map<String, Integer> sales1 = new HashMap<>();
+	        sales1.put("Mathew", 50);
+	        sales1.put("Lisa", 76);
+	        sales1.put("Courtney", 45);
+	        sales1.put("David", 49);
+	        sales1.put("Paul", 49);
+	        List<String> result1 = SalesCompany.sortSales(sales1);
+	        System.out.println(result1);
+	        
+	        Map<String, Integer> sales2 = new HashMap<>();
+	        sales2.put("Mathew", 40);
+	        sales2.put("Lisa", 60);
+	        sales2.put("Courtney", 35);
+	        sales2.put("David", 52);
+	        sales2.put("Paul", 58);
+	        List<String> result2 = SalesCompany.sortSales(sales2);
+	        System.out.println(result2);
+		
+	}
+
+}
